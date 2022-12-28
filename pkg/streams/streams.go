@@ -1,4 +1,4 @@
-package pkg
+package streams
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/ductnn/klog/klient"
-	"github.com/ductnn/klog/utils"
+	"github.com/ductnn/klog/utils/color"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
@@ -45,7 +45,7 @@ func GetPodLogs(pod corev1.Pod) string {
 		reader := bufio.NewScanner(podLogs)
 		for reader.Scan() {
 			line := reader.Text()
-			fmt.Printf("%v: %v\n", utils.Apply(pod.Name, 33), utils.Apply(line, 32))
+			fmt.Printf("%v: %v\n", color.Apply(pod.Name, 33), color.Apply(line, 32))
 		}
 		time.Sleep(1 * delay)
 	}

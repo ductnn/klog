@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/ductnn/klog/klient"
-	"github.com/ductnn/klog/pkg"
-	"github.com/ductnn/klog/utils"
+	"github.com/ductnn/klog/pkg/streams"
+	"github.com/ductnn/klog/utils/color"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
@@ -21,7 +21,7 @@ var banner = `
 `
 
 func main() {
-	fmt.Println(utils.Apply(banner, 34))
+	fmt.Println(color.Apply(banner, 34))
 	ctx := context.TODO()
 	kubeConfig := klient.GetKubeConfigPath()
 
@@ -43,7 +43,7 @@ func main() {
 
 	for _, pod := range pod.Items {
 		fmt.Printf("Pod name=/%s\n", pod.GetName())
-		fmt.Println(pkg.GetPodLogs(pod))
+		fmt.Println(streams.GetPodLogs(pod))
 	}
 
 }
