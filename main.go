@@ -21,7 +21,7 @@ var banner = `
 `
 
 func main() {
-	fmt.Println(color.Apply(banner, 34))
+	fmt.Println(color.Colorize(banner, 34))
 	ctx := context.TODO()
 	kubeConfig := klient.GetKubeConfigPath()
 

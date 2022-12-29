@@ -4,25 +4,24 @@ import (
 	"fmt"
 )
 
+const colorFmt = "\x1b[%dm%s\x1b[0m"
+
 type Color int
 
-const escape = "\x1b"
-
 const (
-	Black Color = iota + 30
-	Red
-	Green
-	Yellow
-	Blue
-	Magenta
-	Cyan
-	White
+	Black     Color = iota + 30 // 30
+	Red                         // 31
+	Green                       // 32
+	Yellow                      // 33
+	Blue                        // 34
+	Magenta                     // 35
+	Cyan                        // 36
+	LightGray                   // 37
+	DarkGray  = 90
+
+	Bold = 1
 )
 
-func (c Color) sequence() int {
-	return int(c)
-}
-
-func Apply(val string, c Color) string {
-	return fmt.Sprintf("%s[%dm%s%s[0m", escape, c.sequence(), val, escape)
+func Colorize(s string, c Color) string {
+	return fmt.Sprintf(colorFmt, c, s)
 }

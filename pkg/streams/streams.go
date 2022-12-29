@@ -45,7 +45,7 @@ func GetPodLogs(pod corev1.Pod) string {
 		reader := bufio.NewScanner(podLogs)
 		for reader.Scan() {
 			line := reader.Text()
-			fmt.Printf("%v: %v\n", color.Apply(pod.Name, 33), color.Apply(line, 32))
+			fmt.Printf("%v: %v\n", color.Colorize(pod.Name, 33), color.Colorize(line, 32))
 		}
 		time.Sleep(1 * delay)
 	}
